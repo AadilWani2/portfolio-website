@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Aadil Iqbal Wani | Full Stack Developer building modern web experiences with React, Node.js and MongoDB." />
+    <meta name="theme-color" content="#030712">
+    <title>Aadil | Full Stack Developer</title>
+
+    <!-- Critical inline CSS: paints background + font before any stylesheet loads.
+         This eliminates the white flash and improves FCP on slow connections. -->
+    <style>
+      *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+      html{scroll-behavior:smooth}
+      body{
+        background:#030712;
+        color:#f8fafc;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        overflow-x:hidden;
+        -webkit-font-smoothing:antialiased;
+        opacity: 0; /* Hidden initially to prevent FOUC, shown via global CSS transition */
+      }
+      #root{min-height:100vh}
+    </style>
+
+    <link rel="modulepreload" href="/src/main.jsx">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+

@@ -1,0 +1,97 @@
+@use "../../shared/styles/variables" as *;
+@use "../../shared/styles/mixins" as *;
+
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: background 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
+  background: transparent;
+  padding: 1.5rem 0;
+  font-family: 'Outfit', sans-serif;
+  // CSS entrance animation — no JS required, no forced reflow
+  animation: navbar-enter 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform;
+
+  &--scrolled {
+    padding: 1rem 0;
+    background: rgba(3, 7, 18, 0.75); // Matches hero #030712
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  &__container {
+    @include container;
+    // Fallbacks just in case the mixin is missing max-width/padding
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  &__logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #f8fafc;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+
+    span {
+      color: #7c3aed;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    gap: 2.5rem;
+
+    a {
+      color: #94a3b8;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #f8fafc;
+      }
+    }
+  }
+
+  &__btn {
+    padding: 0.6rem 1.5rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #7c3aed, #4f46e5);
+    color: white;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    &__nav {
+      display: none;
+    }
+
+    &__btn {
+      padding: 0.5rem 1.2rem;
+      font-size: 0.875rem;
+    }
+  }
+}
+
+@keyframes navbar-enter {
+  from { transform: translateY(-100%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}

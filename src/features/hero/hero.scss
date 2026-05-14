@@ -1,0 +1,264 @@
+
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #030712; // Extremely dark slate
+  color: #f8fafc;
+  overflow: hidden;
+  padding: 10rem 2rem 6rem;
+  font-family: 'Outfit', sans-serif;
+
+  // Modern blurred background elements — promoted to compositor layer
+  &__bg-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, rgba(124, 58, 237, 0) 70%);
+    top: -10%;
+    left: -10%;
+    filter: blur(80px);
+    border-radius: 50%;
+    // Use transform-only animation so the browser keeps this on its own GPU layer
+    // and avoids triggering layout/reflow during animation
+    animation: pulse-glow 8s ease-in-out infinite alternate;
+    will-change: transform;
+    pointer-events: none;
+    z-index: 0;
+
+    &--secondary {
+      background: radial-gradient(circle, rgba(14, 165, 233, 0.12) 0%, rgba(14, 165, 233, 0) 70%);
+      top: auto;
+      bottom: -20%;
+      left: auto;
+      right: -10%;
+      animation-delay: 2s;
+    }
+  }
+
+  // CSS-driven fade-up — animation-fill-mode:backwards means the element
+  // is at `from` state ONLY during animation-delay, never permanently hidden.
+  // This ensures Lighthouse can always find text content for LCP.
+  &__animate {
+    animation: hero-fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+
+    &--1 { animation-delay: 0.05s; }
+    &--2 { animation-delay: 0.1s; }
+    &--3 { animation-delay: 0.2s; }
+    &--4 { animation-delay: 0.3s; }
+  }
+
+  &__container {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    align-items: center;
+
+    @media (min-width: 1024px) {
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  &__tag {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    padding: 0.5rem 1.25rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #e2e8f0;
+    backdrop-filter: blur(10px);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  &__title {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0;
+    
+    span {
+      background: linear-gradient(135deg, #a78bfa, #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline;
+    }
+  }
+
+  &__text {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: #94a3b8;
+    max-width: 540px;
+    font-weight: 300;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 1.25rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+  }
+
+  &__primary, &__secondary {
+    padding: 1rem 2rem;
+    border-radius: 999px; // Pill shape for modern feel
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  &__primary {
+    background: linear-gradient(135deg, #7c3aed, #4f46e5);
+    color: white;
+    border: none;
+    box-shadow: 0 10px 25px -5px rgba(124, 58, 237, 0.4);
+    
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px -5px rgba(124, 58, 237, 0.6);
+      filter: brightness(1.1);
+    }
+  }
+
+  &__secondary {
+    background: rgba(255, 255, 255, 0.03);
+    color: #f8fafc;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-3px);
+    }
+  }
+
+  &__visuals {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__cards {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+    z-index: 2;
+  }
+
+  &__card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 2rem 1.5rem;
+    border-radius: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    backdrop-filter: blur(20px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    &:hover {
+      border-color: rgba(124, 58, 237, 0.3);
+      transform: scale(1.02);
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+
+      &::before {
+        opacity: 1;
+      }
+    }
+
+    span {
+      font-size: 0.875rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      position: relative;
+      z-index: 1;
+    }
+
+    strong {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #f8fafc;
+      position: relative;
+      z-index: 1;
+    }
+    
+    // Create an asymmetric masonry-like layout
+    &:nth-child(1) {
+      margin-top: 2rem;
+    }
+    
+    &:nth-child(2) {
+      margin-bottom: 2rem;
+    }
+    
+    &:nth-child(3) {
+      grid-column: span 2;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 2rem;
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.05), rgba(56, 189, 248, 0.05));
+      border: 1px solid rgba(124, 58, 237, 0.2);
+    }
+  }
+}
+
+@keyframes pulse-glow {
+  // Only animates transform — no layout recalculation, stays on GPU layer
+  0% { transform: scale(1); }
+  100% { transform: scale(1.15); }
+}
+
+@keyframes hero-fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
