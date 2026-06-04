@@ -40,7 +40,9 @@ function Navbar() {
         </nav>
 
         <motion.a
-          href="#"
+          href={personal.resume || "#"}
+          target="_blank"
+          rel="noopener noreferrer"
           className="navbar__btn"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}

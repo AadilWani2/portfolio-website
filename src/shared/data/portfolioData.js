@@ -9,6 +9,7 @@ export const portfolioData = {
       linkedin: "https://www.linkedin.com/in/aadil-wani-a82969402/",
       github: "https://github.com/AadilWani2",
     },
+    resume: "/Aadil_Iqbal_Wani_Full_Stack_Developer_Resume.pdf",
   },
   hero: {
     title: "I Build Modern Websites That Look <span>Sharp</span> & Perform <span>Fast</span>",
@@ -66,25 +67,32 @@ export const portfolioData = {
     description: "A few projects that reflect my skills in frontend design, backend systems, user experience, and practical development.",
     items: [
       {
-        title: "MoodSync",
-        description: "Detects user mood and plays music based on emotion using smart interaction and media logic.",
+        title: "CineMood",
+        description: "An AI-powered cinematic discovery engine designed to match movies with your current mood. Seamlessly blending emotional intelligence with rich media, CineMood analyzes your state to recommend the perfect film, transforming how you find entertainment.",
         stack: ["React", "JavaScript", "API", "UI"],
         status: "Completed",
-        github: "https://github.com/AadilWani2",
+        github: "https://github.com/AadilWani2/CineMood",
       },
       {
         title: "Social Media Platform",
         description: "Full stack app where users can post content, follow users, interact, and manage a modern social feed.",
         stack: ["React", "Node.js", "Express", "MongoDB"],
         status: "Completed",
-        github: "https://github.com/AadilWani2",
+        github: "https://github.com/AadilWani2/Social-media-Platform",
       },
       {
-        title: "E-Commerce Platform",
-        description: "Building a scalable shopping platform with products, authentication, cart system, and clean user flows.",
-        stack: ["React", "Node.js", "MongoDB", "Auth"],
-        status: "In Progress",
-        github: "https://github.com/AadilWani2",
+        title: "RentEase",
+        description: "A modern rental platform enabling users to browse, list, and rent items seamlessly with secure bookings and dynamic management.",
+        stack: ["React", "Node.js", "MongoDB", "Express"],
+        status: "Completed",
+        github: "https://github.com/AadilWani2/RentEase",
+      },
+      {
+        title: "GCLIMS",
+        description: "A comprehensive Laboratory Information Management System (LIMS) designed to streamline sample tracking, record test entry details, and optimize full lab workflows.",
+        stack: ["React", "Node.js", "Express", "MongoDB"],
+        status: "Completed",
+        github: "https://github.com/AadilWani2/GCLIMS",
       }
     ]
   },
